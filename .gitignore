@@ -5,3 +5,6 @@
 .ipynb_checkpoints/
 venv
 images
+
+# Security
+.env
