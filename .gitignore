@@ -8,3 +8,6 @@ images
 
 # Security
 .env
+
+# Media
+figures/
