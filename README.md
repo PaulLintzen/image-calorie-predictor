@@ -77,9 +77,19 @@ Once the app is running, open your browser and navigate to http://localhost:5000
 
 ## Technologies
 - Language: Python
-- Deep Learning Framework: PyTorch
+- Deep Learning Framework: TesnorFlow, PyTorch, Keras, Torchvision
 - Web Framework: Flask
-- Libraries: OpenCV, Pillow, NumPy, Pandas, torchvision, etc.
+- Libraries: OpenCV, Pillow, NumPy, Pandas, scikit-learn, matplotlib, tqdm etc.
+
+---
+
+## Contributing
+We welcome contributions! Follow these steps:
+1. Fork the repository
+2. Create a feature branch (```git checkout -b feature-name```)
+3. Commit your changes (```git commit -m 'Add feature'```)
+4. Push to branch (```git push origin feature-name```)
+5. Open a Pull Request
 
 ---
 
@@ -99,6 +109,8 @@ This project is licensed under the MIT License – see the [LICENSE](LICENSE) fi
 ---
 
 ## Contact
-John Rodocker - https://www.linkedin.com/in/johnrodocker/
+LinkedIn: [John Rodocker](https://www.linkedin.com/in/johnrodocker/), [Paul Lintzen](https://www.linkedin.com/in/paul-lintzen/)
 
-Paul Lintzen - https://www.linkedin.com/in/paul-lintzen/
+Email: [John Rodocker](john_rodocker@mines.edu), [Paul Lintzen](paul_lintze@mines.edu)
+
+---
