@@ -111,6 +111,6 @@ This project is licensed under the MIT License – see the [LICENSE](LICENSE) fi
 ## Contact
 LinkedIn: [John Rodocker](https://www.linkedin.com/in/johnrodocker/), [Paul Lintzen](https://www.linkedin.com/in/paul-lintzen/)
 
-Email: [John Rodocker](john_rodocker@mines.edu), [Paul Lintzen](paul_lintze@mines.edu)
+Email: [John Rodocker](mailto:john_rodocker@mines.edu), [Paul Lintzen](mailto:paul_lintzen@mines.edu)
 
 ---
