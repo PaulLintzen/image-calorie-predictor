@@ -1,9 +1,10 @@
 <!DOCTYPE html>
+<!-- The majority of this page was generated using claude.ai's Sonnet 4.5 model-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prediction Result</title>
+    <title>GrubGuru - Prediction Result</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,9 +21,18 @@
             box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         
+        .logo {
+            font-size: 2em;
+            font-weight: bold;
+            color: #2c5aa0;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
         h1 {
             color: #333;
             margin-bottom: 30px;
+            text-align: center;
         }
         
         img {
@@ -30,7 +40,8 @@
             width: 100%;
             height: auto;
             border-radius: 4px;
-            margin-bottom: 20px;
+            margin: 0 auto 20px auto;
+            display: block;
         }
         
         .prediction {
@@ -98,6 +109,7 @@
         
         .buttons {
             margin-top: 30px;
+            text-align: center;
         }
         
         .btn {
@@ -117,19 +129,12 @@
         .btn-primary:hover {
             background: #1e3f7a;
         }
-        
-        .btn-secondary {
-            background: #ddd;
-            color: #333;
-        }
-        
-        .btn-secondary:hover {
-            background: #ccc;
-        }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="logo">GrubGuru</div>
+        
         <h1>Prediction Result</h1>
         
         <img src="{{ url_for('uploaded_file', filename=filename) }}" alt="Uploaded food">
@@ -159,7 +164,6 @@
         
         <div class="buttons">
             <a href="{{ url_for('upload') }}" class="btn btn-primary">Upload Another</a>
-            <a href="{{ url_for('home') }}" class="btn btn-secondary">Home</a>
         </div>
     </div>
 </body>

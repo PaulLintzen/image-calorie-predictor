@@ -91,9 +91,11 @@ cnn_model = keras.models.load_model('models/architecture7.keras')
 # ------------------------------
 # Home Page
 # ------------------------------
+#   This page is currently set to be the same as the upload page, but
+#   this can be changed later if desired.
 @app.route('/')
 def home():
-    return render_template('index.html')
+    return redirect(url_for('upload'))
 
 
 # ------------------------------
