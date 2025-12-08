@@ -50,6 +50,12 @@
             font-size: 1.1em;
         }
         
+        .calories {
+            color: #666;
+            font-size: 1.1em;
+            margin-top: 5px;
+        }
+        
         .top-predictions {
             margin-top: 30px;
         }
@@ -62,19 +68,32 @@
         .prediction-item {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             padding: 10px;
             margin-bottom: 8px;
             background: #f9f9f9;
             border-radius: 4px;
         }
         
+        .prediction-left {
+            flex: 1;
+        }
+        
         .prediction-name {
             text-transform: capitalize;
+            font-weight: 500;
+        }
+        
+        .prediction-calories {
+            color: #666;
+            font-size: 0.9em;
+            margin-top: 2px;
         }
         
         .prediction-confidence {
             color: #2c5aa0;
             font-weight: bold;
+            margin-left: 15px;
         }
         
         .buttons {
@@ -118,13 +137,21 @@
         <div class="prediction">
             <h2>{{ prediction.replace('_', ' ') }}</h2>
             <p class="confidence">Confidence: {{ confidence|round(1) }}%</p>
+            {% if calories %}
+            <p class="calories">{{ calories }} kcal per 100g</p>
+            {% endif %}
         </div>
         
         <div class="top-predictions">
             <h3>Top 5 Predictions</h3>
             {% for pred in top_predictions %}
             <div class="prediction-item">
-                <span class="prediction-name">{{ pred.class.replace('_', ' ') }}</span>
+                <div class="prediction-left">
+                    <div class="prediction-name">{{ pred.class.replace('_', ' ') }}</div>
+                    {% if pred.calories %}
+                    <div class="prediction-calories">{{ pred.calories }} kcal/100g</div>
+                    {% endif %}
+                </div>
                 <span class="prediction-confidence">{{ pred.confidence|round(1) }}%</span>
             </div>
             {% endfor %}

@@ -29,7 +29,8 @@ os.makedirs('uploads', exist_ok=True)
 
 # Model configuration
 CALORIE_FILE_PATH = 'data/calories.csv'
-calorie_df = pd.read_csv(CALORIE_FILE_PATH)
+calorie_df = pd.read_csv(CALORIE_FILE_PATH).dropna()
+calorie_dict = dict(zip(calorie_df['food'], calorie_df['kcal/100g']))
 
 IMG_HEIGHT = 128
 IMG_WIDTH = 128
@@ -124,13 +125,15 @@ def predict(filename):
     predicted_class_idx = np.argmax(predictions[0])
     confidence = float(predictions[0][predicted_class_idx] * 100)
     predicted_class_name = CLASS_NAMES[predicted_class_idx]
+    predicted_calories = calorie_dict.get(predicted_class_name.replace('_', ' '), None)
 
     # Get top 5 predictions
     top_5_indices = np.argsort(predictions[0])[-5:][::-1]
     top_5_predictions = [
         {
             'class': CLASS_NAMES[idx],
-            'confidence': float(predictions[0][idx] * 100)
+            'confidence': float(predictions[0][idx] * 100),
+            'calories': calorie_dict.get(CLASS_NAMES[idx].replace('_', ' '), None)
         }
         for idx in top_5_indices
     ]
@@ -139,6 +142,7 @@ def predict(filename):
                            filename=filename,
                            prediction=predicted_class_name,
                            confidence=confidence,
+                           calories=predicted_calories,
                            top_predictions=top_5_predictions)
 
 
