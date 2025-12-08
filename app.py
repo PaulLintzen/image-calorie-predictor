@@ -154,6 +154,15 @@ def predict(filename):
 @app.route('/upload', methods=['GET', 'POST'])
 def upload():
     if request.method == 'POST':
+        # Clear all previous uploads
+        for filename in os.listdir(app.config['UPLOAD_FOLDER']):
+            filepath = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            try:
+                if os.path.isfile(filepath):
+                    os.remove(filepath)
+            except Exception as e:
+                print(f"Error deleting {filename}: {e}")
+        
         # Check if the post has the file part
         if 'file' not in request.files:
             flash('No file part')
