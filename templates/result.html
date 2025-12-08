@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prediction Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+        }
+        
+        img {
+            max-width: 400px;
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+        
+        .prediction {
+            background: #e8f4f8;
+            padding: 20px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+        
+        .prediction h2 {
+            margin: 0 0 10px 0;
+            color: #2c5aa0;
+        }
+        
+        .confidence {
+            color: #666;
+            font-size: 1.1em;
+        }
+        
+        .top-predictions {
+            margin-top: 30px;
+        }
+        
+        .top-predictions h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .prediction-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            margin-bottom: 8px;
+            background: #f9f9f9;
+            border-radius: 4px;
+        }
+        
+        .prediction-name {
+            text-transform: capitalize;
+        }
+        
+        .prediction-confidence {
+            color: #2c5aa0;
+            font-weight: bold;
+        }
+        
+        .buttons {
+            margin-top: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-right: 10px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .btn-primary {
+            background: #2c5aa0;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #1e3f7a;
+        }
+        
+        .btn-secondary {
+            background: #ddd;
+            color: #333;
+        }
+        
+        .btn-secondary:hover {
+            background: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Prediction Result</h1>
+        
+        <img src="{{ url_for('uploaded_file', filename=filename) }}" alt="Uploaded food">
+        
+        <div class="prediction">
+            <h2>{{ prediction.replace('_', ' ') }}</h2>
+            <p class="confidence">Confidence: {{ confidence|round(1) }}%</p>
+        </div>
+        
+        <div class="top-predictions">
+            <h3>Top 5 Predictions</h3>
+            {% for pred in top_predictions %}
+            <div class="prediction-item">
+                <span class="prediction-name">{{ pred.class.replace('_', ' ') }}</span>
+                <span class="prediction-confidence">{{ pred.confidence|round(1) }}%</span>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div class="buttons">
+            <a href="{{ url_for('upload') }}" class="btn btn-primary">Upload Another</a>
+            <a href="{{ url_for('home') }}" class="btn btn-secondary">Home</a>
+        </div>
+    </div>
+</body>
+</html>
