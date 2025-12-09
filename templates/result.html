@@ -49,6 +49,11 @@
             padding: 20px;
             border-radius: 4px;
             margin: 20px 0;
+
+             /* new flex layout */
+            display: flex;
+            align-items: center; /* vertically center content */
+            justify-content: space-between; /* space between text and circle */
         }
         
         .prediction h2 {
@@ -129,6 +134,84 @@
         .btn-primary:hover {
             background: #1e3f7a;
         }
+        
+        /* New additions */
+        .conf-bar {
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 5px;
+            width: 100px; /* small bar next to confidence text */
+        }
+
+        .conf-fill {
+            height: 100%;
+            background: #2c5aa0;
+        }
+
+        .circle-row {
+            display: flex;
+            justify-content: center;  /* center the circles horizontally */
+            gap: 30px;                /* spacing between circles */
+            margin-top: 15px;         /* space from prediction text */
+        }
+
+        .circular-wrapper {
+            display: flex;
+            flex-direction: column;   /* stack circle + label vertically */
+            align-items: center;
+        }
+
+        .circular-container {
+            position: relative;
+            width: 120px;
+            height: 120px;
+        }
+
+        .circular-bg,
+        .circular-fg {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .circular-bg circle {
+            fill: none;
+            stroke: #e0e0e0;
+            stroke-width: 12;
+        }
+
+        .circular-fg circle {
+            fill: none;
+            stroke-width: 12;
+            stroke: #2c5aa0;
+            stroke-linecap: round;
+            stroke-dasharray: 314; /* circumference */
+            stroke-dashoffset: 314; /* start hidden */
+            transition: stroke-dashoffset 0.7s ease;
+        }
+
+        .circular-text {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #2c5aa0;
+        }
+
+        .circular-label {
+            margin-top: 5px;
+            font-size: 0.95em;
+            color: #333;
+        }
+
+
     </style>
 </head>
 <body>
@@ -140,15 +223,44 @@
         <img src="{{ url_for('uploaded_file', filename=filename) }}" alt="Uploaded food">
         
         <div class="prediction">
-            <h2>{{ prediction.replace('_', ' ') }}</h2>
-            <p class="confidence">Confidence: {{ confidence|round(1) }}%</p>
-            {% if calories %}
-            <p class="calories">{{ calories }} kcal per 100g</p>
-            {% endif %}
+            <h2>{{ prediction.replace('_', ' ') | title }}</h2>
+            <div class="circle-row">
+                <!-- Confidence circle -->
+                <div class="circular-wrapper">
+                    <div class="circular-container">
+                        <svg class="circular-bg" width="120" height="120">
+                            <circle cx="60" cy="60" r="50" />
+                        </svg>
+                        <svg class="circular-fg" width="120" height="120">
+                            <circle cx="60" cy="60" r="50"
+                                    style="stroke-dashoffset: {{ 314 - (314 * confidence|default(0)|float / 100) }};" />
+                        </svg>
+                        <div class="circular-text">{{ confidence|round(1) }}%</div>
+                    </div>
+                    <div class="circular-label">Confidence</div>
+                </div>
+
+                <!-- Calories circle -->
+                {% if calories %}
+                <div class="circular-wrapper">
+                    <div class="circular-container">
+                        <svg class="circular-bg" width="120" height="120">
+                            <circle cx="60" cy="60" r="50" />
+                        </svg>
+                        <svg class="circular-fg" width="120" height="120">
+                            <circle cx="60" cy="60" r="50"
+                                    style="stroke-dashoffset: {{ 314 - (314 * calories|float / 462) }}; stroke: {{ calorie_color }};" />
+                        </svg>
+                        <div class="circular-text">{{ calories }} kcal</div>
+                    </div>
+                    <div class="circular-label">Calories/100g</div>
+                </div>
+                {% endif %}
+            </div>
         </div>
         
         <div class="top-predictions">
-            <h3>Top 5 Predictions</h3>
+            <h3>Next Most Likely Predictions</h3>
             {% for pred in top_predictions %}
             <div class="prediction-item">
                 <div class="prediction-left">
@@ -157,7 +269,12 @@
                     <div class="prediction-calories">{{ pred.calories }} kcal/100g</div>
                     {% endif %}
                 </div>
+                <div style="text-align: right;">
                 <span class="prediction-confidence">{{ pred.confidence|round(1) }}%</span>
+                <div class="conf-bar">
+                    <div class="conf-fill" style="width: {{ pred.confidence|default(0)|float }}%;"></div>
+                </div>
+            </div>
             </div>
             {% endfor %}
         </div>

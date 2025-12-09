@@ -80,6 +80,28 @@ def preprocess_image_mobilenet(img_path):
     
     return img_array
 
+def get_calorie_color(calories, min_val=43, max_val=462):
+     # Clamp calories
+    calories = max(min(calories, max_val), min_val)
+    
+    # Compute ratio 0->1
+    ratio = (calories - min_val) / (max_val - min_val)
+    
+    # Use gradient segments
+    if ratio <= 0.5:
+        # green -> yellow
+        # ratio 0->0.5 maps to 0->1 for this segment
+        seg_ratio = ratio / 0.5
+        r = int(255 * seg_ratio)
+        g = 255
+    else:
+        # yellow -> red
+        seg_ratio = (ratio - 0.5) / 0.5
+        r = 255
+        g = int(255 * (1 - seg_ratio))
+    
+    b = 0
+    return f"rgb({r},{g},{b})"
 
 
 # ------------------------------
@@ -129,23 +151,26 @@ def predict(filename):
     predicted_class_name = CLASS_NAMES[predicted_class_idx]
     predicted_calories = calorie_dict.get(predicted_class_name.replace('_', ' '), None)
 
-    # Get top 5 predictions
-    top_5_indices = np.argsort(predictions[0])[-5:][::-1]
-    top_5_predictions = [
+    # Get top 3 predictions
+    top_3_indices = np.argsort(predictions[0])[-3:][::-1]
+    top_3_indices = top_3_indices[1:]
+    top_3_predictions = [
         {
             'class': CLASS_NAMES[idx],
             'confidence': float(predictions[0][idx] * 100),
             'calories': calorie_dict.get(CLASS_NAMES[idx].replace('_', ' '), None)
         }
-        for idx in top_5_indices
+        for idx in top_3_indices
     ]
 
+    calorie_color = get_calorie_color(predicted_calories) if predicted_calories else "#2c5aa0"
     return render_template('result.html',
                            filename=filename,
                            prediction=predicted_class_name,
                            confidence=confidence,
                            calories=predicted_calories,
-                           top_predictions=top_5_predictions)
+                           calorie_color=calorie_color,
+                           top_predictions=top_3_predictions)
 
 
 # ------------------------------
