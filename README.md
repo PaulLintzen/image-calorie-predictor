@@ -23,7 +23,7 @@
 ---
 
 ## About
-Fall 2025 Final Project from CSCI413 Advanced Data Science at Colorado School of Mines. This project focuses on training a CNN model on the Food101 dataset and provides a front end flask application that allows users to upload images. Once uploaded the we use our saved model to identify the food and return a calorie estimate.
+This project was produced for as our Final Project from CSCI413 Advanced Data Science at Colorado School of Mines. It focuses on training a CNN model on the Food101 dataset and provides a front end flask application that allows users to upload images. Once an image has been uploaded, we use our saved model to identify the food and return a calorie estimate.
 
 ---
 
