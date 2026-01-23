@@ -94,7 +94,7 @@ Once the app is running, open your browser and navigate to http://localhost:5000
 
 ## Technologies
 - Language: Python
-- Deep Learning Framework: TesnorFlow, PyTorch, Keras, Torchvision
+- Deep Learning Framework: TensorFlow, PyTorch, Keras, Torchvision
 - Web Framework: Flask
 - Libraries: OpenCV, Pillow, NumPy, Pandas, scikit-learn, matplotlib, tqdm etc.
 
