@@ -4,14 +4,15 @@
 ![GitHub forks](https://img.shields.io/github/forks/PaulLintzen/image-calorie-predictor?style=social) 
 ![GitHub license](https://img.shields.io/github/license/PaulLintzen/image-calorie-predictor)
 
-**Description:** Our AI Food Image Calorie predictor lovingly name "GrubGuru".
+**Description:** Our AI Food Image Calorie predictor lovingly named "GrubGuru".
 
 ---
 
 ## Table of Contents
 - [About](#about)
-- [Demo](#demo)
 - [Features](#features)
+- [Demo](#demo)
+- [Presentation Slides & Full Report](#report-and-slides)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Technologies](#technologies)
@@ -23,12 +24,25 @@
 ---
 
 ## About
-This project was produced as our Final Project for CSCI413 Advanced Data Science at Colorado School of Mines. It involved training a Convolution Neural Network on the Food101 dataset to classify food images and return calorie estiamtes. It provides a front end flask application that allows users to upload images at which point, we use our saved model to identify the food and return a calorie estimate. For a quick overview of the process and results we highly recommend skimming through [our presentation slides](PresentationSlides.pdf).
+This project was completed as our final project for CSCI 413: Advanced Data Science at the Colorado School of Mines. We trained a Convolutional Neural Network (CNN) on the Food-101 dataset to classify food images and estimate calorie content.
+
+The system includes a front end Flask-based web application that allows users to upload images, after which a saved model is used to identify the food and return a calorie estimate. It provides a front end flask application that allows users to upload images at which point, we use our saved model to identify the food and return a calorie estimate. 
+
+For a quick overview of the methodology and results, we recommend skimming our [presentation slides](PresentationSlides.pdf). For a more detailed discussion, see the full [project report](Report.pdf).
+
 
 ---
 
+## Features
+- Take a picture of a food item through the included Flask app  
+- CNN model predicts the food type from 101 possible options  
+- Returns an estimated calorie count based on the predicted food  
+- Easy integration for personal use or as part of a larger nutrition-tracking application  
+---
+
+
 ## Demo
-The demo is run locally but we've included some screenshots here to demonstrate. We have 5 correctly classified images along with 2 incorrect ones. It is interesting to note that for those images where we are getting incorrect outputs the confidence is generally lower and the correct classification is often contained in the next most likely list.
+The demo is run locally but we've included some screenshots here to demonstrate. We have five correctly classified images along with two incorrect ones. It is interesting to note that for those images where we are getting incorrect outputs, the confidence is generally lower and the correct classification is often listed as next most likely.
 
 
 <table>
@@ -63,16 +77,15 @@ The demo is run locally but we've included some screenshots here to demonstrate.
   </tr>
 </table>
 
-
-
-
 ---
 
-## Features
-- Take a picture of a food item through the included Flask app  
-- CNN model predicts the food type from 101 possible options  
-- Returns an estimated calorie count based on the predicted food  
-- Easy integration for personal use or as part of a larger nutrition-tracking application  
+## Report and Slides
+
+- **Full Project Report:** [Report.pdf](Report.pdf)  
+  Detailed methodology, experiments, and evaluation.
+
+- **Presentation Slides:** [PresentationSlides.pdf](PresentationSlides.pdf)  
+  High-level overview of the pipeline and results.
 
 ---
 
