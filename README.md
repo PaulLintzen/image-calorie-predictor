@@ -4,7 +4,7 @@
 ![GitHub forks](https://img.shields.io/github/forks/PaulLintzen/image-calorie-predictor?style=social) 
 ![GitHub license](https://img.shields.io/github/license/PaulLintzen/image-calorie-predictor)
 
-**Description:** Collects calorie info for 101 foods and uses a CNN to predict the food type and estimate its calorie content.
+**Description:** Our AI Food Image Calorie predictor lovingly name "GrubGuru".
 
 ---
 
@@ -23,28 +23,45 @@
 ---
 
 ## About
-This project was produced for as our Final Project from CSCI413 Advanced Data Science at Colorado School of Mines. It focuses on training a CNN model on the Food101 dataset and provides a front end flask application that allows users to upload images. Once an image has been uploaded, we use our saved model to identify the food and return a calorie estimate.
+This project was produced as our Final Project for CSCI413 Advanced Data Science at Colorado School of Mines. It involved training a Convolution Neural Network on the Food101 dataset to classify food images and return calorie estiamtes. It provides a front end flask application that allows users to upload images at which point, we use our saved model to identify the food and return a calorie estimate. For a quick overview of the process and results we highly recommend skimming through [our presentation slides](PresentationSlides.pdf).
 
 ---
 
 ## Demo
-The demo is run locally but we've included some screenshots here to demonstrate.
-
-First some correct predictions:
-
-<img width="524" height="511" alt="Screenshot 2025-12-08 221200" src="https://github.com/user-attachments/assets/3c2bb447-6c79-4591-8402-3aa317864cab" />
-<img width="463" height="499" alt="Screenshot 2025-12-08 210723" src="https://github.com/user-attachments/assets/3fac0fa5-e55b-44f2-ada3-9a1bfc5fa257" />
-<img width="473" height="575" alt="Screenshot 2025-12-08 210107" src="https://github.com/user-attachments/assets/824e4435-0c53-4bda-ab45-ab1a0e04b88b" />
-<img width="532" height="557" alt="Screenshot 2025-12-08 205732" src="https://github.com/user-attachments/assets/95e90395-6fb9-45bd-8f6b-7fddbdc312b8" />
-<img width="594" height="590" alt="Screenshot 2025-12-08 205601" src="https://github.com/user-attachments/assets/7118c711-04f5-4b89-80a5-8405a0bfd1f2" />
+The demo is run locally but we've included some screenshots here to demonstrate. We have 5 correctly classified images along with 2 incorrect ones. It is interesting to note that for those images where we are getting incorrect outputs the confidence is generally lower and the correct classification is often contained in the next most likely list.
 
 
-Some Incorrect Predictions:
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/3c2bb447-6c79-4591-8402-3aa317864cab" width="300"/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/3fac0fa5-e55b-44f2-ada3-9a1bfc5fa257" width="300"/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/824e4435-0c53-4bda-ab45-ab1a0e04b88b" width="300"/>
+    </td>
+  </tr>
 
-<img width="475" height="575" alt="Screenshot 2025-12-08 205928" src="https://github.com/user-attachments/assets/1b4ae1d2-aedd-4968-8638-5bcfba9129f8" />
-<img width="478" height="512" alt="Screenshot 2025-12-08 210807" src="https://github.com/user-attachments/assets/64a780d0-0dcd-483a-becf-37e8a82971dd" />
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/95e90395-6fb9-45bd-8f6b-7fddbdc312b8" width="300"/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/7118c711-04f5-4b89-80a5-8405a0bfd1f2" width="300"/>
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/1b4ae1d2-aedd-4968-8638-5bcfba9129f8" width="300"/>
+    </td>
+  </tr>
 
-
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/64a780d0-0dcd-483a-becf-37e8a82971dd" width="300"/>
+    </td>
+  </tr>
+</table>
 
 
 
