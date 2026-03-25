@@ -26,7 +26,7 @@
 ## About
 This project was completed as our final project for CSCI 413: Advanced Data Science at the Colorado School of Mines. We trained a Convolutional Neural Network (CNN) on the Food-101 dataset to classify food images and estimate calorie content.
 
-The system includes a front end Flask-based web application that allows users to upload images, after which a saved model is used to identify the food and return a calorie estimate. It provides a front end flask application that allows users to upload images at which point, we use our saved model to identify the food and return a calorie estimate. 
+The system includes a front end Flask-based web application that allows users to upload images, after which a saved model is used to identify the food and return a calorie estimate.
 
 For a quick overview of the methodology and results, we recommend skimming our [presentation slides](PresentationSlides.pdf). For a more detailed discussion, see the full [project report](Report.pdf).
 
